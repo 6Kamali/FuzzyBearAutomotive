@@ -39,7 +39,7 @@
         /* --- UPDATED NAVIGATION --- */
         nav {
             background: rgba(0,0,0,0.95);
-            padding: 15px 0;
+            padding: 10px 0; /* Slightly reduced padding for logo fit */
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -52,14 +52,35 @@
             align-items: center;
         }
 
-        .logo {
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--light-text);
+        /* --- LOGO STYLING --- */
+        .logo-link {
+            display: flex;
+            align-items: center;
             text-decoration: none;
+            gap: 15px;
         }
 
-        .logo span { color: var(--primary-red); }
+        .header-logo {
+            height: 60px; 
+            width: 60px;
+            border-radius: 50%; 
+            object-fit: contain; /* Changed to contain for clean PNG edges */
+            background: #000;    /* Background color if the PNG is transparent */
+            border: 2px solid var(--primary-red);
+            transition: transform 0.3s ease;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--light-text);
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .logo-text span { color: var(--primary-red); }
+
+        .logo-link:hover .header-logo { transform: scale(1.05); }
 
         .nav-links {
             display: flex;
@@ -97,6 +118,10 @@
         }
 
         /* --- RESPONSIVE STYLES --- */
+        @media (max-width: 992px) {
+            .logo-text { display: none; } /* Hides text on smaller screens to save space */
+        }
+
         @media (max-width: 768px) {
             .menu-toggle { display: flex; }
 
@@ -104,7 +129,7 @@
                 display: none; 
                 flex-direction: column;
                 position: absolute;
-                top: 70px; /* Aligns with nav height */
+                top: 80px; 
                 left: 0;
                 width: 100%;
                 background: rgba(0,0,0,0.98);
@@ -125,7 +150,6 @@
             }
 
             .hero-text h1 { font-size: 2.2rem; }
-            .info-flex { flex-direction: column; }
         }
 
         /* Hero Section */
@@ -208,7 +232,10 @@
 
     <nav>
         <div class="container nav-content">
-            <a href="index.html" class="logo">FUZZY BEAR <span>AUTOMOTIVE</span></a>
+            <a href="index.html" class="logo-link">
+                <img src="bear.png" alt="Fuzzy Bear Logo" class="header-logo">
+                <span class="logo-text">FUZZY BEAR <span>AUTOMOTIVE</span></span>
+            </a>
             
             <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Navigation">
                 <div class="bar"></div>
