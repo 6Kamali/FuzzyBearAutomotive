@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fuzzy Bear Automotive | Key Programming & Diagnostics Alexander MB Test v0.1</title>
+    <title>Fuzzy Bear Automotive | Key Programming & Diagnostics Alexander MB</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <style>
         /* --- CSS STYLING --- */
@@ -36,10 +36,10 @@
             padding: 20px 0;
         }
 
-        /* Navigation */
+        /* Updated Navigation */
         nav {
-            background: rgba(0,0,0,0.9);
-            padding: 15px 0;
+            background: rgba(0,0,0,0.95);
+            padding: 10px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -61,9 +61,26 @@
 
         .logo span { color: var(--primary-red); }
 
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--primary-red); }
+
         /* Hero Section */
         .hero {
-            height: 80vh;
+            height: 70vh;
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
                         url('https://static.wixstatic.com/media/8a3e6d_0b1e2bf057fa4d78a69db402aa6a7846.jpg/v1/fill/w_1920,h_1061,al_c,q_90,enc_avif,quality_auto/8a3e6d_0b1e2bf057fa4d78a69db402aa6a7846.jpg');
             background-size: cover;
@@ -90,6 +107,12 @@
 
         .btn:hover { background: #b71c1c; transform: translateY(-3px); }
 
+        /* Equipment Section */
+        .equipment { padding: 80px 0; background: #1a1a1a; text-align: center; }
+        .equip-flex { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin-top: 40px; }
+        .equip-item { max-width: 300px; }
+        .equip-item h4 { color: var(--primary-red); margin-bottom: 10px; }
+
         /* Services Grid */
         .services { padding: 60px 0; background: #222; }
         .services h2 { text-align: center; margin-bottom: 40px; }
@@ -111,7 +134,7 @@
         .service-card:hover { transform: scale(1.03); }
         .service-card h3 { color: var(--primary-red); margin-top: 0; }
 
-        /* Contact Info Bar (Like your red footer) */
+        /* Contact Info Bar */
         .contact-bar {
             background: var(--primary-red);
             padding: 40px 0;
@@ -136,9 +159,9 @@
             color: #666;
         }
 
-        /* Mobile Adjustments */
         @media (max-width: 768px) {
             .hero-text h1 { font-size: 2.2rem; }
+            .nav-links { display: none; } /* Consider a burger menu for mobile later */
             .info-flex { flex-direction: column; }
         }
     </style>
@@ -147,9 +170,14 @@
 
     <nav>
         <div class="container nav-content">
-            <a href="#" class="logo">FUZZY BEAR <span>AUTOMOTIVE</span></a>
-            <div>
-                <a href="tel:12047616953" class="btn" style="padding: 8px 15px; font-size: 0.9rem;">CALL NOW</a>
+            <a href="index.html" class="logo">FUZZY BEAR <span>AUTOMOTIVE</span></a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="plans.html">Plans</a>
+                <a href="partners.html">Partners</a>
+                <a href="contact.html">Contact</a>
+                <a href="tel:12047616953" class="btn" style="padding: 8px 15px; font-size: 0.8rem;">(204) 761-6953</a>
             </div>
         </div>
     </nav>
@@ -158,17 +186,45 @@
         <div class="container hero-text">
             <h1>Fuzzy Bear Automotive</h1>
             <p>Your Trusted Experts in Key Cutting & Precision Programming</p>
-            <a href="tel:12047616953" class="btn">Emergency Mobile Service</a>
+            <a href="contact.html" class="btn">Book Mobile Service</a>
         </div>
     </section>
 
-    <section class="container" style="padding: 60px 0; text-align: center;">
+    <section style="background: #111; padding: 30px 0; border-bottom: 1px solid #333;">
+        <div class="container" style="display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; opacity: 0.7;">
+            <div style="text-align: center;"><strong>30+ YEARS</strong> EXPERIENCE</div>
+            <div style="text-align: center;"><strong>RED SEAL</strong> CERTIFIED</div>
+            <div style="text-align: center;"><strong>MOBILE</strong> ON-SITE REPAIR</div>
+            <div style="text-align: center;"><strong>LOCAL</strong> ALEXANDER OWNED</div>
+        </div>
+    </section>
+
+    <section class="container" style="padding: 80px 0; text-align: center;">
         <h2>Expertise You Can Trust</h2>
-        <p style="max-width: 800px; margin: auto; color: var(--gray-text);">
-            With over 30 years of hands-on expertise and <strong>Red Seal Certification</strong>, 
-            we provide dealership-level technology at your doorstep. From standard duplicates to complex 
+        <p style="max-width: 800px; margin: auto; color: var(--gray-text); font-size: 1.1rem;">
+            We provide dealership-level technology at your doorstep. From standard duplicates to complex 
             "All Keys Lost" scenarios, we get you back on the road safely and affordably.
         </p>
+    </section>
+
+    <section class="equipment">
+        <div class="container">
+            <h2>Dealership Technology, Better Prices</h2>
+            <div class="equip-flex">
+                <div class="equip-item">
+                    <h4>Precision Cutting</h4>
+                    <p>Laser-cut keys and high-security sidewinder keys cut to factory specifications on-site.</p>
+                </div>
+                <div class="equip-item">
+                    <h4>Advanced Fob Ops</h4>
+                    <p>Programming for the latest proximity fobs and push-to-start systems for modern vehicles.</p>
+                </div>
+                <div class="equip-item">
+                    <h4>ECU Data Recovery</h4>
+                    <p>Specialized tools to pull PIN codes and data directly from vehicle modules when keys are missing.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section class="services" id="services">
@@ -189,8 +245,18 @@
                 </div>
                 <div class="service-card">
                     <h3>Mobile Service</h3>
-                    <p>We serve Alexander, Brandon, and the Westman area. We come to your home, office, or roadside.</p>
+                    <p>Serving Alexander, Brandon, and the Westman area. We come to your home, office, or roadside.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="padding: 80px 0; background: #1a1a1a; text-align: center;">
+        <div class="container">
+            <h2>Service Coverage</h2>
+            <p style="color: var(--gray-text); margin-bottom: 30px;">Based in Alexander, serving a 100km radius including Brandon, Virden, and Souris.</p>
+            <div style="width: 100%; height: 300px; background: #333; border-radius: 10px; display: flex; align-items: center; justify-content: center; border: 1px solid #444;">
+                <p style="color: #666;">[ Interactive Map Embed Placeholder ]</p>
             </div>
         </div>
     </section>
@@ -211,7 +277,7 @@
                     <p>Mon - Thurs: 9am - 5pm<br>Fri: 9am - 4:30pm</p>
                 </div>
             </div>
-            <p style="margin-top: 30px; font-size: 0.9rem;">Mobile Service – We Come to You! | Located at Carrick St & 3 Ave, Alexander, MB</p>
+            <p style="margin-top: 30px; font-size: 0.9rem;">Located at 75 3rd Ave, Alexander, MB R0K 0A0</p>
         </div>
     </section>
 
