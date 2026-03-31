@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuzzy Bear Automotive | Key Programming & Diagnostics Alexander MB Test v0.1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS STYLING --- */
+        :root {
+            --primary-red: #d32f2f;
+            --dark-bg: #1a1a1a;
+            --light-text: #ffffff;
+            --gray-text: #cccccc;
+            --card-bg: #262626;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px 0;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(0,0,0,0.9);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--primary-red);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--light-text);
+            text-decoration: none;
+        }
+
+        .logo span { color: var(--primary-red); }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://static.wixstatic.com/media/8a3e6d_0b1e2bf057fa4d78a69db402aa6a7846.jpg/v1/fill/w_1920,h_1061,al_c,q_90,enc_avif,quality_auto/8a3e6d_0b1e2bf057fa4d78a69db402aa6a7846.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-text h1 { font-size: 3.5rem; margin-bottom: 10px; }
+        .hero-text p { font-size: 1.2rem; color: var(--gray-text); margin-bottom: 30px; }
+
+        .btn {
+            background: var(--primary-red);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn:hover { background: #b71c1c; transform: translateY(-3px); }
+
+        /* Services Grid */
+        .services { padding: 60px 0; background: #222; }
+        .services h2 { text-align: center; margin-bottom: 40px; }
+        
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            border-bottom: 4px solid var(--primary-red);
+            transition: 0.3s;
+        }
+
+        .service-card:hover { transform: scale(1.03); }
+        .service-card h3 { color: var(--primary-red); margin-top: 0; }
+
+        /* Contact Info Bar (Like your red footer) */
+        .contact-bar {
+            background: var(--primary-red);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .info-flex {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .info-item h4 { margin: 0; text-transform: uppercase; font-size: 0.9rem; }
+        .info-item p, .info-item a { color: white; text-decoration: none; font-weight: bold; }
+
+        footer {
+            background: #111;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero-text h1 { font-size: 2.2rem; }
+            .info-flex { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-content">
+            <a href="#" class="logo">FUZZY BEAR <span>AUTOMOTIVE</span></a>
+            <div>
+                <a href="tel:12047616953" class="btn" style="padding: 8px 15px; font-size: 0.9rem;">CALL NOW</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container hero-text">
+            <h1>Fuzzy Bear Automotive</h1>
+            <p>Your Trusted Experts in Key Cutting & Precision Programming</p>
+            <a href="tel:12047616953" class="btn">Emergency Mobile Service</a>
+        </div>
+    </section>
+
+    <section class="container" style="padding: 60px 0; text-align: center;">
+        <h2>Expertise You Can Trust</h2>
+        <p style="max-width: 800px; margin: auto; color: var(--gray-text);">
+            With over 30 years of hands-on expertise and <strong>Red Seal Certification</strong>, 
+            we provide dealership-level technology at your doorstep. From standard duplicates to complex 
+            "All Keys Lost" scenarios, we get you back on the road safely and affordably.
+        </p>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <h2>Our Specialized Services</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <h3>Key Programming</h3>
+                    <p>Expert programming for transponders, proximity fobs, and smart keys for all vehicle makes and models.</p>
+                </div>
+                <div class="service-card">
+                    <h3>All Keys Lost</h3>
+                    <p>Specialized solutions when no original key exists. We cut and program new keys on-site.</p>
+                </div>
+                <div class="service-card">
+                    <h3>ECU Diagnostics</h3>
+                    <p>Advanced diagnostic solutions and engine control unit programming to resolve complex electrical issues.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Mobile Service</h3>
+                    <p>We serve Alexander, Brandon, and the Westman area. We come to your home, office, or roadside.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-bar">
+        <div class="container">
+            <div class="info-flex">
+                <div class="info-item">
+                    <h4>Call Us</h4>
+                    <a href="tel:12047616953">(204) 761-6953</a>
+                </div>
+                <div class="info-item">
+                    <h4>Email Us</h4>
+                    <a href="mailto:altankamali@outlook.com">altankamali@outlook.com</a>
+                </div>
+                <div class="info-item">
+                    <h4>Opening Hours</h4>
+                    <p>Mon - Thurs: 9am - 5pm<br>Fri: 9am - 4:30pm</p>
+                </div>
+            </div>
+            <p style="margin-top: 30px; font-size: 0.9rem;">Mobile Service – We Come to You! | Located at Carrick St & 3 Ave, Alexander, MB</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Fuzzy Bear Automotive Services. All Rights Reserved.</p>
+        <p>Expertly crafted in Alexander, Manitoba.</p>
+    </footer>
+
+</body>
+</html>
