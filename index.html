@@ -37,68 +37,62 @@
         }
 
         /* --- UPDATED NAVIGATION --- */
-        nav {
-            background: rgba(0,0,0,0.95);
-            padding: 10px 0; /* Slightly reduced padding for logo fit */
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 2px solid var(--primary-red);
-        }
+       /* --- NAVIGATION OVERHAUL --- */
+  nav {
+      background: rgba(0,0,0,0.95);
+      padding: 0; /* REMOVED PADDING: Allows logo to touch top/bottom */
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 2px solid var(--primary-red);
+      height: 80px; /* FIXED HEIGHT: Sets the bar's size */
+  }
 
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+  .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%; /* Ensures content fills the 80px bar */
+      padding: 0 20px; /* Keeps links from touching the screen edges */
+  }
 
-        /* --- LOGO STYLING --- */
-        .logo-link {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            gap: 15px;
-        }
+  /* --- LOGO STYLING: FULL HEIGHT --- */
+  .logo-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      height: 100%; /* Makes the link container fill the bar */
+      gap: 15px;
+  }
 
-        .header-logo {
-            height: 60px; 
-            width: 60px;
-            border-radius: 50%; 
-            object-fit: contain; /* Changed to contain for clean PNG edges */
-            background: #000;    /* Background color if the PNG is transparent */
-            border: 2px solid var(--primary-red);
-            transition: transform 0.3s ease;
-        }
+  .header-logo {
+      height: 100%;    /* STRETCH: Top to bottom of the bar */
+      width: auto;     /* AUTO-WIDTH: Prevents the bear from looking squished */
+      object-fit: contain; 
+      background: #000;
+      border-right: 2px solid var(--primary-red); /* Optional: Separates logo from text */
+      transition: transform 0.3s ease;
+      /* Removed border-radius and border-circle for the "full bar" look */
+  }
 
-        .logo-text {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--light-text);
-            font-family: 'Montserrat', sans-serif;
-            text-transform: uppercase;
-        }
+  .logo-text {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--light-text);
+      font-family: 'Montserrat', sans-serif;
+      text-transform: uppercase;
+  }
 
-        .logo-text span { color: var(--primary-red); }
+  .logo-text span { color: var(--primary-red); }
 
-        .logo-link:hover .header-logo { transform: scale(1.05); }
+  /* Subtly pulse the logo on hover instead of scaling out of the bar */
+  .logo-link:hover .header-logo { opacity: 0.9; }
 
-        .nav-links {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover { color: var(--primary-red); }
-
+  .nav-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+  }
         /* --- MOBILE MENU BUTTON --- */
         .menu-toggle {
             display: none;
@@ -230,12 +224,15 @@
 </head>
 <body>
 
-    <nav>
-        <div class="container nav-content">
-            <a href="index.html" class="logo-link">
-                <img src="bear.png" alt="Fuzzy Bear Logo" class="header-logo">
-                <span class="logo-text">FUZZY BEAR <span>AUTOMOTIVE</span></span>
-            </a>
+  <nav>
+    <div class="container nav-content">
+        <a href="index.html" class="logo-link">
+            <img src="bear.png" alt="Fuzzy Bear Logo" class="header-logo-full">
+            <span class="logo-text">FUZZY BEAR <span>AUTOMOTIVE</span></span>
+        </a>
+        
+        </div>
+</nav>
             
             <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Navigation">
                 <div class="bar"></div>
