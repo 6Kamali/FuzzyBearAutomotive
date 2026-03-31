@@ -36,10 +36,10 @@
             padding: 20px 0;
         }
 
-        /* Updated Navigation */
+        /* --- UPDATED NAVIGATION --- */
         nav {
             background: rgba(0,0,0,0.95);
-            padding: 10px 0;
+            padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -78,6 +78,56 @@
 
         .nav-links a:hover { color: var(--primary-red); }
 
+        /* --- MOBILE MENU BUTTON --- */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            background: none;
+            border: none;
+            gap: 5px;
+            padding: 10px;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            transition: 0.3s;
+        }
+
+        /* --- RESPONSIVE STYLES --- */
+        @media (max-width: 768px) {
+            .menu-toggle { display: flex; }
+
+            .nav-links {
+                display: none; 
+                flex-direction: column;
+                position: absolute;
+                top: 70px; /* Aligns with nav height */
+                left: 0;
+                width: 100%;
+                background: rgba(0,0,0,0.98);
+                padding: 20px 0;
+                text-align: center;
+                border-bottom: 2px solid var(--primary-red);
+            }
+
+            .nav-links.active {
+                display: flex; 
+            }
+
+            .nav-links a {
+                padding: 15px 0;
+                width: 100%;
+                display: block;
+                font-size: 1rem;
+            }
+
+            .hero-text h1 { font-size: 2.2rem; }
+            .info-flex { flex-direction: column; }
+        }
+
         /* Hero Section */
         .hero {
             height: 70vh;
@@ -106,12 +156,6 @@
         }
 
         .btn:hover { background: #b71c1c; transform: translateY(-3px); }
-
-        /* Equipment Section */
-        .equipment { padding: 80px 0; background: #1a1a1a; text-align: center; }
-        .equip-flex { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin-top: 40px; }
-        .equip-item { max-width: 300px; }
-        .equip-item h4 { color: var(--primary-red); margin-bottom: 10px; }
 
         /* Services Grid */
         .services { padding: 60px 0; background: #222; }
@@ -158,12 +202,6 @@
             font-size: 0.8rem;
             color: #666;
         }
-
-        @media (max-width: 768px) {
-            .hero-text h1 { font-size: 2.2rem; }
-            .nav-links { display: none; } /* Consider a burger menu for mobile later */
-            .info-flex { flex-direction: column; }
-        }
     </style>
 </head>
 <body>
@@ -171,7 +209,14 @@
     <nav>
         <div class="container nav-content">
             <a href="index.html" class="logo">FUZZY BEAR <span>AUTOMOTIVE</span></a>
-            <div class="nav-links">
+            
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Navigation">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </button>
+
+            <div class="nav-links" id="navLinks">
                 <a href="index.html">Home</a>
                 <a href="services.html">Services</a>
                 <a href="plans.html">Plans</a>
@@ -207,26 +252,6 @@
         </p>
     </section>
 
-    <section class="equipment">
-        <div class="container">
-            <h2>Dealership Technology, Better Prices</h2>
-            <div class="equip-flex">
-                <div class="equip-item">
-                    <h4>Precision Cutting</h4>
-                    <p>Laser-cut keys and high-security sidewinder keys cut to factory specifications on-site.</p>
-                </div>
-                <div class="equip-item">
-                    <h4>Advanced Fob Ops</h4>
-                    <p>Programming for the latest proximity fobs and push-to-start systems for modern vehicles.</p>
-                </div>
-                <div class="equip-item">
-                    <h4>ECU Data Recovery</h4>
-                    <p>Specialized tools to pull PIN codes and data directly from vehicle modules when keys are missing.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section class="services" id="services">
         <div class="container">
             <h2>Our Specialized Services</h2>
@@ -251,25 +276,6 @@
         </div>
     </section>
 
-    <section style="padding: 80px 0; background: #1a1a1a; text-align: center;">
-    <div class="container">
-        <h2>Service Coverage</h2>
-        <p style="color: var(--gray-text); margin-bottom: 30px;">Based in Alexander, serving a 100km radius including Brandon, Virden, and Souris.</p>
-        
-        <div style="width: 100%; height: 400px; overflow: hidden; border-radius: 10px; border: 1px solid #444;">
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d82343.37684073357!2d-100.3703953457585!3d49.83818314125869!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x52e7960309e3e3b7%3A0x6b1d6f5f9c5a1a1a!2sAlexander%2C%20MB%20R0K%200A0!5e0!3m2!1sen!2sca!4v1710000000000!5m2!1sen!2sca" 
-                width="100%" 
-                height="100%" 
-                style="border:0;" 
-                allowfullscreen="" 
-                loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-        </div>
-    </div>
-</section>
-
     <section class="contact-bar">
         <div class="container">
             <div class="info-flex">
@@ -291,10 +297,17 @@
     </section>
 
     <footer>
-        <p>&copy; 2026 Fuzzy Bear Automotive Services. All Rights Reserved.</p>
+        <p>© 2026 Fuzzy Bear Automotive Services. All Rights Reserved.</p>
         <p>Expertly crafted in Alexander, Manitoba.</p>
-        <p>Website Crafted By Kamali Network 2026</p></p>
+        <p>Website Crafted By Kamali Network 2026</p>
     </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
 
 </body>
 </html>
