@@ -3,7 +3,7 @@
 This repository contains the complete source code, assets, and configuration for the **Fuzzy Bear Automotive** official website, hosted at [fuzzybearauto.ca](https://fuzzybearauto.ca).
 
 ## 🐾 About the Project
-Fuzzy Bear Automotive is a proudly Canadian, Alexander-based mobile service specializing in high-tech vehicle security, key programming, and advanced diagnostics. Founded in 2021 and backed by **30+ years of trade experience** and **Red Seal Certification**, this platform serves as the digital dispatch hub for customers across all of Manitoba.
+Fuzzy Bear Automotive is a proudly Canadian, Alexander-based mobile service specializing in high-tech vehicle security, key programming, and advanced diagnostics. Founded in 2021 and backed by **25 years of trade experience** and **Red Seal Certification**, this platform serves as the digital dispatch hub for customers across all of Manitoba.
 
 ## 🛠️ Site Architecture
 The website is built using a mobile-first, high-performance approach to ensure accessibility even in rural areas with limited connectivity.
