@@ -4,62 +4,282 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ | Fuzzy Bear Automotive</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    
     <style>
-        :root { --primary-red: #d32f2f; }
-        body { font-family: 'Roboto', sans-serif; margin: 0; background: #fafafa; color: #333; }
-        nav { background: #000; padding: 15px 0; border-bottom: 2px solid var(--primary-red); text-align: center; }
-        nav a { color: white; text-decoration: none; margin: 0 10px; font-weight: bold; text-transform: uppercase; font-size: 0.85rem; }
-        .container { max-width: 800px; margin: 60px auto; padding: 0 20px; }
-        .faq-item { background: white; padding: 25px; margin-bottom: 15px; border-radius: 8px; border-left: 5px solid var(--primary-red); }
-        .faq-item h3 { margin-top: 0; color: var(--primary-red); }
-        footer { background: #111; color: #666; padding: 40px 0; text-align: center; font-size: 0.8rem; }
+        :root {
+            --primary-red: #ff3c3c;
+            --accent-glow: rgba(255, 60, 60, 0.3);
+            --dark-bg: #050505;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-dim: #a1a1a6;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- HIGH-TECH TEXTURED BACKGROUND --- */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #050505; 
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-glow::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+            background-size: 32px 32px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .blob {
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, var(--primary-red) 0%, transparent 70%);
+            filter: blur(100px);
+            border-radius: 50%;
+            opacity: 0.12;
+            animation: move 20s infinite alternate;
+            z-index: 0;
+        }
+
+        @keyframes move {
+            from { transform: translate(-10%, -10%) scale(1); }
+            to { transform: translate(15%, 15%) scale(1.1); }
+        }
+
+        /* --- GLASS NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 95%;
+            max-width: 1200px;
+            height: 70px;
+            background: rgba(15, 15, 15, 0.7);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            padding: 0 25px;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 12px;
+        }
+
+        .header-logo { height: 40px; width: auto; }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .logo-text span { color: var(--primary-red); }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .nav-links a.active, .nav-links a:hover { color: var(--primary-red); }
+
+        /* --- FAQ SECTION --- */
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 140px auto 100px;
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 50px;
+            background: linear-gradient(to bottom, #fff 40%, #888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .faq-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary-red);
+            background: rgba(255, 60, 60, 0.05);
+            transform: scale(1.01);
+        }
+
+        .faq-item h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            color: var(--primary-red);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .faq-item h3::before {
+            content: 'Q.';
+            font-weight: 800;
+            opacity: 0.5;
+        }
+
+        .faq-item p {
+            color: var(--text-dim);
+            font-size: 1.05rem;
+            padding-left: 35px;
+        }
+
+        .faq-item strong {
+            color: white;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 60px 0;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(15px);
+        }
+
+        /* --- MOBILE --- */
+        @media (max-width: 850px) {
+            .nav-links { display: none; }
+            .container { margin-top: 110px; }
+            .faq-item { padding: 20px; }
+            .faq-item p { padding-left: 0; }
+        }
     </style>
 </head>
 <body>
+
+    <div class="bg-glow">
+        <div class="blob"></div>
+    </div>
+
     <nav>
-        <a href="index.html">Home</a>
-        <a href="services.html">Services</a>
-        <a href="about.html">About</a>
-        <a href="faq.html" style="color: var(--primary-red);">FAQ</a>
-        <a href="partners.html">Social</a>
-        <a href="contact.html">Contact</a>
+        <div class="nav-content">
+            <a href="index.html" class="logo-link">
+                <img src="bear.png" alt="Fuzzy Bear" class="header-logo">
+                <span class="logo-text">FUZZY BEAR <span>AUTOMOTIVE</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="areas.html">Service Areas</a>
+                <a href="faq.html" class="active">FAQ</a>
+                <a href="partners.html">Social</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
     </nav>
+
     <div class="container">
-        <h1 style="text-align: center; font-family: 'Montserrat';">Frequently Asked Questions</h1>
+        <h1>Frequently Asked Questions</h1>
+
         <div class="faq-item">
             <h3>How far do you travel?</h3>
-            <p>We serve <strong>all of Manitoba</strong>. While based in Alexander, we regularly travel to Winnipeg, Brandon, and Northern communities for specialized services.</p>
+            <p>We serve <strong>all of Manitoba</strong>. While based in Alexander, we regularly travel to Winnipeg, Brandon, and Northern communities for specialized mobile dispatches.</p>
         </div>
+
         <div class="faq-item">
             <h3>Can you help if I lost all my keys?</h3>
-            <p>Yes. We are experts in "All Keys Lost" situations. We cut and program new keys directly at your vehicle's location.</p>
+            <p>Yes. We specialize in <strong>"All Keys Lost"</strong> situations. We use high-end decoding tools to cut and program new keys directly at your vehicle's location—no towing required.</p>
         </div>
+
         <div class="faq-item">
             <h3>Do you work on push-to-start "Smart Keys"?</h3>
-            <p>Absolutely. We carry a wide inventory of proximity fobs and smart keys for modern vehicles. We can program the remote entry, the push-start ignition, and even cut the emergency "hidden" blade inside the fob right in our mobile unit.</p>
+            <p>Absolutely. We carry a wide inventory of proximity fobs and smart keys for modern vehicles. We can program the remote entry and the push-start ignition right in our mobile unit.</p>
         </div>
+
         <div class="faq-item">
-            <h3>What is a "Red Seal" technician, and why does it matter?</h3>
-            <p>Red Seal is the highest Canadian standard for skilled trades. It means your vehicle is being handled by a certified professional with decades of proven expertise, not an amateur with a YouTube degree. When it comes to your car's complex computer system, you want a certified expert.</p>
+            <h3>What is a "Red Seal" technician?</h3>
+            <p>Red Seal is the <strong>highest Canadian standard</strong> for skilled trades. It ensures your vehicle is being handled by a certified professional with decades of proven expertise, not an amateur.</p>
         </div>
 
         <div class="faq-item">
             <h3>Are you a Canadian company?</h3>
-            <p>Yes, 100%. Fuzzy Bear Automotive is a proudly Canadian-owned and operated small business. We were founded in 2021 and are based right here in Alexander, MB. When you hire us, your money stays in the Manitoba economy.</p>
+            <p>Yes, 100%. Fuzzy Bear Automotive is a proudly Canadian-owned and operated small business, founded in 2021 and based right here in <strong>Alexander, MB</strong>.</p>
         </div>
 
         <div class="faq-item">
             <h3>Can you program keys for older or "Classic" cars?</h3>
-            <p>We do! Beyond modern fobs, we specialize in custom wiring and ignition restoration for vintage vehicles. If your classic needs a specialized electrical solution or a hard-to-find key originated, we have the tools and the 30+ years of experience to handle it.</p>
+            <p>We do! Beyond modern fobs, we specialize in custom wiring and ignition restoration for vintage vehicles. With <strong>25+ years of experience</strong>, we can handle what dealers won't.</p>
         </div>
 
         <div class="faq-item">
             <h3>How do I pay for mobile service?</h3>
-            <p>For your convenience, we accept major credit cards, debit, and e-transfers on-site. You'll receive a professional digital receipt for your records or insurance purposes immediately after the job is completed.</p>
+            <p>We accept major credit cards, debit, and e-transfers on-site. You'll receive a professional digital receipt for insurance purposes immediately after the job is completed.</p>
         </div>
 
     </div>
-    <footer><p>&copy; 2026 Fuzzy Bear Automotive Services.</p></footer>
+
+    <footer>
+        <p>© 2026 Fuzzy Bear Automotive Services. Alexander, MB.</p>
+    </footer>
+
 </body>
 </html>
