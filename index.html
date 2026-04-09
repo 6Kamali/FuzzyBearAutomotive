@@ -4,209 +4,253 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fuzzy Bear Automotive | Key Programming & Diagnostics Alexander MB</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary-red: #d32f2f;
-            --dark-bg: #1a1a1a;
-            --light-text: #ffffff;
-            --gray-text: #cccccc;
-            --card-bg: #262626;
+            --primary-red: #ff3c3c;
+            --accent-glow: rgba(255, 60, 60, 0.3);
+            --dark-bg: #080808;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-dim: #a1a1a6;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            margin: 0;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--dark-bg);
-            color: var(--light-text);
+            color: var(--text-main);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        h1, h2, h3 {
-            font-family: 'Montserrat', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        /* --- DYNAMIC GRADIENT BACKGROUND --- */
+        .bg-glow {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(211, 47, 47, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(211, 47, 47, 0.1) 0%, transparent 40%);
+            z-index: -1;
         }
 
         .container {
-            width: 95%;
+            width: 90%;
             max-width: 1200px;
             margin: auto;
         }
 
-        /* --- NAVIGATION --- */
+        /* --- GLASS NAVIGATION --- */
         nav {
-            background: rgba(0,0,0,0.98);
-            padding: 0; 
-            position: sticky;
-            top: 0;
-            z-index: 2000; /* Stays above everything */
-            border-bottom: 2px solid var(--primary-red);
-            height: 100px; 
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 95%;
+            max-width: 1200px;
+            height: 70px;
+            background: rgba(15, 15, 15, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            padding: 0 25px;
+            transition: var(--transition);
         }
 
         .nav-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 100%;
-            padding: 0 20px;
+            width: 100%;
         }
 
         .logo-link {
             display: flex;
             align-items: center;
             text-decoration: none;
-            height: 100%;
-            gap: 15px;
+            gap: 12px;
         }
 
-        .header-logo {
-            height: 100%; 
-            width: auto;
-            object-fit: contain;
-            display: block;
-        }
+        .header-logo { height: 40px; width: auto; }
 
         .logo-text {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--light-text);
             font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: white;
             text-transform: uppercase;
-            white-space: nowrap;
+            letter-spacing: 1px;
         }
-
         .logo-text span { color: var(--primary-red); }
 
         .nav-links {
             display: flex;
-            gap: 15px;
+            gap: 25px;
             align-items: center;
         }
 
         .nav-links a {
-            color: white;
+            color: var(--text-dim);
             text-decoration: none;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            font-weight: bold;
-            transition: 0.3s;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: var(--transition);
         }
 
         .nav-links a:hover { color: var(--primary-red); }
 
-        /* --- MOBILE MENU BUTTON --- */
+        .nav-cta {
+            background: var(--primary-red);
+            padding: 10px 20px;
+            border-radius: 12px;
+            color: white !important;
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        /* --- MOBILE TOGGLE --- */
         .menu-toggle {
             display: none;
             flex-direction: column;
+            gap: 6px;
             cursor: pointer;
             background: none;
             border: none;
-            gap: 5px;
-            padding: 10px;
-            z-index: 2100;
         }
+        .bar { width: 25px; height: 2px; background: white; border-radius: 2px; }
 
-        .bar {
-            width: 30px;
-            height: 3px;
-            background-color: white;
-            transition: 0.3s;
-        }
-
-        /* --- RESPONSIVE FIXES --- */
-        @media (max-width: 1050px) {
-            .logo-text { display: none; }
-        }
-
-        @media (max-width: 850px) {
-            nav { height: 80px; }
-            
-            .menu-toggle { display: flex; }
-
-            .nav-links {
-                display: none; 
-                flex-direction: column;
-                position: absolute;
-                top: 80px; 
-                left: 0;
-                width: 100%;
-                background: rgba(10, 10, 10, 0.98);
-                padding: 20px 0;
-                border-bottom: 2px solid var(--primary-red);
-                box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-            }
-
-            .nav-links.active { display: flex; }
-
-            .nav-links a {
-                padding: 15px 0;
-                width: 100%;
-                text-align: center;
-                font-size: 1.1rem;
-                border-bottom: 1px solid #222;
-            }
-        }
-
-        /* Hero & Content Styles */
+        /* --- HERO SECTION --- */
         .hero {
-            height: 60vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://static.wixstatic.com/media/8a3e6d_0b1e2bf057fa4d78a69db402aa6a7846.jpg/v1/fill/w_1920,h_1061,al_c,q_90,enc_avif,quality_auto/8a3e6d_0b1e2bf057fa4d78a69db402aa6a7846.jpg');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding-top: 180px;
+            padding-bottom: 100px;
             text-align: center;
+            position: relative;
         }
 
-        .hero-text h1 { font-size: 3rem; margin-bottom: 10px; padding: 0 10px; }
-        .hero-text p { font-size: 1.2rem; color: var(--gray-text); margin-bottom: 30px; }
-
-        .btn {
-            background: var(--primary-red);
-            color: white;
-            padding: 12px 30px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            transition: 0.3s;
-            display: inline-block;
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(to bottom, #fff 40%, #888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .services { padding: 60px 0; background: #222; }
-        .service-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 20px;
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            max-width: 600px;
+            margin: 0 auto 40px;
         }
 
-        .service-card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 10px;
-            border-bottom: 4px solid var(--primary-red);
-        }
-
-        .contact-bar { background: var(--primary-red); padding: 40px 0; text-align: center; }
-        .info-flex { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; }
+        /* --- BENTO GRID SERVICES --- */
+        .services { padding: 80px 0; }
         
-        footer { background: #111; text-align: center; padding: 30px 0; font-size: 0.8rem; color: #666; }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 280px;
+            gap: 20px;
+        }
+
+        .bento-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bento-card:hover {
+            border-color: var(--primary-red);
+            background: rgba(255, 60, 60, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .bento-card.large { grid-column: span 2; }
+        .bento-card.tall { grid-row: span 2; }
+
+        .bento-card h3 { font-size: 1.6rem; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; }
+        .bento-card p { color: var(--text-dim); font-size: 0.95rem; }
+
+        /* --- TRUST BAR --- */
+        .trust-bar {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            padding: 40px 0;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 40px;
+        }
+        .trust-item { font-size: 0.75rem; font-weight: 800; color: var(--text-dim); letter-spacing: 2px; }
+        .trust-item span { color: var(--primary-red); }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 80px 0 40px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            background: rgba(0,0,0,0.5);
+        }
+
+        .dev-tag { margin-top: 20px; color: #555; font-size: 0.8rem; }
+
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 850px) {
+            nav { width: 90%; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 85px; left: 0; width: 100%;
+                background: rgba(10, 10, 10, 0.95);
+                backdrop-filter: blur(20px);
+                border-radius: 20px;
+                flex-direction: column;
+                padding: 30px;
+                border: 1px solid var(--glass-border);
+            }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: flex; }
+            .bento-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
+            .bento-card.large { grid-column: span 1; }
+            .bento-card { min-height: 220px; }
+            .logo-text { font-size: 0.8rem; }
+        }
     </style>
 </head>
 <body>
 
+    <div class="bg-glow"></div>
+
     <nav>
-        <div class="container nav-content">
+        <div class="nav-content">
             <a href="index.html" class="logo-link">
-                <img src="bear.png" alt="Fuzzy Bear Logo" class="header-logo">
+                <img src="bear.png" alt="Fuzzy Bear" class="header-logo">
                 <span class="logo-text">FUZZY BEAR <span>AUTOMOTIVE</span></span>
             </a>
 
-            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Open Menu">
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">
                 <div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
@@ -216,77 +260,74 @@
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="services.html">Services</a>
-                <a href="partners.html">Socials</a>
                 <a href="contact.html">Contact</a>
-                <a href="areas.html">Service Area</a>
                 <a href="faq.html">FAQ</a>
-                <a href="tel:12047616953" class="btn" style="padding: 8px 15px; font-size: 0.8rem;">(204) 761-6953</a>
+                <a href="tel:12047616953" class="nav-cta">(204) 761-6953</a>
             </div>
         </div>
     </nav>
 
     <section class="hero">
-        <div class="container hero-text">
-            <h1>Fuzzy Bear Automotive</h1>
-            <p>Expert Key Cutting & Precision Programming</p>
-            <a href="contact.html" class="btn">Book Mobile Service</a>
-        </div>
-    </section>
-
-    <section style="background: #111; padding: 25px 0; border-bottom: 1px solid #333;">
-        <div class="container" style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; opacity: 0.8; font-size: 0.8rem;">
-            <div><strong>25 YEARS</strong> EXPERIENCE</div>
-            <div><strong>RED SEAL</strong> CERTIFIED</div>
-            <div><strong>MOBILE</strong> ON-SITE</div>
-            <div><strong>LOCAL</strong> ALEXANDER OWNED</div>
+        <div class="container">
+            <h1>Expert Keys. <br>No Dealer Needed.</h1>
+            <p>High-precision key programming and advanced diagnostics delivered to your doorstep in Alexander and Westman.</p>
+            <a href="contact.html" class="nav-cta" style="padding: 18px 40px; font-size: 1rem; font-weight: bold;">Book Mobile Service</a>
+            
+            <div class="trust-bar">
+                <div class="trust-item"><span>25+</span> YEARS EXP</div>
+                <div class="trust-item"><span>RED SEAL</span> CERTIFIED</div>
+                <div class="trust-item"><span>100%</span> MOBILE</div>
+                <div class="trust-item"><span>LOCAL</span> OWNED</div>
+            </div>
         </div>
     </section>
 
     <section class="services">
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 40px;">Specialized Services</h2>
-            <div class="service-grid">
-                <div class="service-card">
+            <div class="bento-grid">
+                <div class="bento-card large">
                     <h3>Key Programming</h3>
-                    <p>Transponders, fobs, and smart keys for all major makes.</p>
+                    <p>Dealer-level transponder, fob, and smart key programming for nearly every make and model on the road.</p>
                 </div>
-                <div class="service-card">
+                <div class="bento-card">
                     <h3>All Keys Lost</h3>
-                    <p>Locked out? We cut and program new keys right at your vehicle.</p>
+                    <p>Emergency recovery when all keys are missing. We cut and program on-site.</p>
                 </div>
-                <div class="service-card">
-                    <h3>ECU & Diagnostics</h3>
-                    <p>Advanced coding to resolve electrical and engine issues.</p>
+                <div class="bento-card">
+                    <h3>ECU Coding</h3>
+                    <p>Sophisticated electrical diagnostics and module programming.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="contact-bar">
-        <div class="container">
-            <div class="info-flex">
-                <div class="info-item">
-                    <h4>Call Direct</h4>
-                    <a href="tel:12047616953" style="color:white; font-size: 1.2rem;">(204) 761-6953</a>
-                </div>
-                <div class="info-item">
-                    <h4>Email</h4>
-                    <a href="mailto:altankamali@outlook.com" style="color:white;">altankamali@outlook.com</a>
+                <div class="bento-card large">
+                    <h3>Mobile Diagnostics</h3>
+                    <p>Save the towing fee. Our mobile lab brings professional-grade diagnostic equipment directly to you.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>© 2026 Fuzzy Bear Automotive Services. Alexander, MB.</p>
-       <p class="dev-tag">Designed & Developed by <b>Allee Kamali</b></p>
+        <div class="container">
+            <h3>Fuzzy Bear Automotive</h3>
+            <p style="color: var(--text-dim);">Alexander, MB | (204) 761-6953</p>
+            <div style="margin-top: 20px;">
+                <a href="mailto:altankamali@outlook.com" style="color: white; text-decoration: none; margin: 0 10px;">Email Us</a>
+                <a href="partners.html" style="color: white; text-decoration: none; margin: 0 10px;">Socials</a>
+            </div>
+            <p class="dev-tag">© 2026 Designed & Developed by <b>Allee Kamali</b></p>
+        </div>
     </footer>
 
     <script>
         function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
+            document.getElementById('navLinks').classList.toggle('active');
         }
+
+        // Close menu when link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
     </script>
 
 </body>
